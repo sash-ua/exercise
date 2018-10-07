@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let template of state.response.body; let i = index; trackBy: trackById">
+    <h2 >
+      <a routerLink="./details" routerLinkActive="active-link" (click)="upState(i)">{{template.name}}</a>
+    </h2>
+    <span>{{modified}}{{template.modified | date:"medium"}}</span>
+  </li>
+</ul>

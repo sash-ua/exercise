@@ -1,0 +1,15 @@
+<div [class.open]="state.editing">
+  <form #editForm="ngForm" (ngSubmit)="editor(editForm, $event)">
+    <div class="form-group">
+      <label for="text">Change text: </label>
+      <input id="text" type="text" [value]="state.editing.target.innerText" [(ngModel)]="state.editing.target.innerText" name="txt" required>
+    </div>
+    <div class="form-group">
+      <label for="font-size">Change font size: </label>
+      <input id="font-size" type="text" name="size" [(ngModel)]="state.editing.target.style.fontSize" required autofocus>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Save" [disabled]="!editForm.form.valid">
+    </div>
+  </form>
+</div>

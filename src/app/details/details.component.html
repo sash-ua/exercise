@@ -1,0 +1,3 @@
+<span>Template </span><h3>{{state.response.body[state.active].name}}:</h3>
+<div #el class="description" [innerHTML]="state.response.body[state.active].template | safeHtml"></div>
+<app-editor *ngIf="state.showEditor"></app-editor>

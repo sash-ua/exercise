@@ -1,0 +1,42 @@
+input {
+  position: absolute;
+  line-height: 1em;
+  right: 4px;
+}
+
+form {
+  height: 0;
+  margin-left: 50%;
+  overflow: hidden;
+  position: absolute;
+  width: 305px;
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+  transform: translate(-50%);
+  font-size: .8em;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+  background-color: rgb(207, 216, 220);
+}
+
+.open form {
+  height: 83px;
+}
+
+.form-group {
+  margin: 5px;
+  line-height: 1.74em;
+}
+
+label {
+  display: inline-block;
+}
+
+.ng-valid[required], .ng-valid.required {
+  border-left: 3px solid #42A948;
+}
+
+.ng-invalid:not(form) {
+  border-left: 3px solid #CF5452;
+}
