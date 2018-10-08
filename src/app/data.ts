@@ -5,7 +5,7 @@ export const INIT_DATA = {
     modified: 'Last Modification: ',
     home: 'home',
     http: 'http',
-    cache: 'cache',
+    cache: 'ExerciseCache',
   },
   templates: [
     {
