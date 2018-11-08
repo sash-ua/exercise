@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {of} from 'rxjs/internal/observable/of';
 import {INIT_DATA} from '../../data';
+import {BROWSER_LOCAL_STORAGE} from '../local-storage/local-storage.service';
 
 export type Template = {
   id: number,
@@ -11,7 +12,7 @@ export type Template = {
   modified: number
 };
 
-export type Response = {
+export type HttpData = {
   body: Template[]
 };
 
@@ -20,17 +21,17 @@ export type Response = {
 })
 export class InterseptorService implements HttpInterceptor {
 
-  constructor() {
+  constructor(@Inject(BROWSER_LOCAL_STORAGE) private ls: Storage) {
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let cached: Response,
+    let cached: HttpData,
       temp: string;
     if (req.body) {
-      localStorage.setItem(INIT_DATA.texts.http, JSON.stringify(req.body));
+      this.ls.setItem(INIT_DATA.texts.http, JSON.stringify(req.body));
     } else {
-      temp = localStorage.getItem(INIT_DATA.texts.http);
-      cached = temp ? JSON.parse(temp) : localStorage.setItem(INIT_DATA.texts.http, JSON.stringify(INIT_DATA.templates));
+      temp = this.ls.getItem(INIT_DATA.texts.http);
+      cached = temp ? JSON.parse(temp) : this.ls.setItem(INIT_DATA.texts.http, JSON.stringify(INIT_DATA.templates));
     }
     return temp ? of(new HttpResponse({body: cached})) : of(new HttpResponse({body: INIT_DATA.templates}));
   }
